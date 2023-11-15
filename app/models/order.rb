@@ -3,10 +3,19 @@ class Order < ApplicationRecord
 	has_many :order_items, dependent: :destroy
 
 	validates :total_price, presence: true
+	validate :one_draft_order, on: :create
 
 	enum :status, [:draft, :pending, :completed]
 
 	before_save :update_total_price
+
+	private
+
+  def one_draft_order
+    if user && user.orders.exists?(status: 'draft')
+      errors.add(:base, 'User can have only one order in draft status')
+    end
+  end
 
   def update_total_price
     self.total_price = calculate_total_price
