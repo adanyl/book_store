@@ -1,0 +1,26 @@
+<style>
+  .book-tile {
+    border: 1px solid #ddd;
+    padding: 15px;
+    margin: 10px;
+    text-align: center;
+    width: 200px;
+    display: inline-block;
+  }
+</style>
+
+<h1>List of Books</h1>
+
+<% if @books.any? %>
+  <div class="book-tiles">
+    <% @books.each do |book| %>
+      <div class="book-tile">
+        <h3><%= book.title %></h3>
+        <p><%= book.author %></p>
+        <p><%= number_to_currency(book.price) %></p>
+      </div>
+    <% end %>
+  </div>
+<% else %>
+  <p>No books available.</p>
+<% end %>
