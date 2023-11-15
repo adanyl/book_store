@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   
   resources :books, only: [:index, :show]
   resources :reviews, except: [:index]
+  resources :order_items, only: [:destroy]
 
   post 'checkout/create_order_item', to: 'checkout#create_order_item', as: 'create_order_item'
+  get 'checkout/show_draft_order', to: 'checkout#show_draft_order', as: 'show_draft_order'
 end

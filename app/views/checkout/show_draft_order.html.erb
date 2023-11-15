@@ -1,0 +1,32 @@
+<% if @draft_order.present? && @draft_order.order_items.present? %>
+  <h1>Draft Order Details</h1>
+
+  <p><strong>Total Price:</strong> <%= number_to_currency(@draft_order.total_price) %></p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Book</th>
+        <th>Quantity</th>
+        <th>Price</th>
+        <th>Item price</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @draft_order.order_items.each do |order_item| %>
+        <tr>
+          <td><%= link_to order_item.book.title, book_path(order_item.book.id) %></td>
+          <td><%= order_item.quantity %></td>
+          <td><%= number_to_currency(order_item.book.price) %></td>
+          <td><%= number_to_currency(order_item.item_price) %></td>
+          <td>
+            <%= button_to 'Remove', order_item_path(order_item), method: :delete, class: 'btn btn-danger btn-sm' %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <p>No draft order or order items found.</p>
+<% end %>

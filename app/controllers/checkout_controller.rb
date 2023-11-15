@@ -16,6 +16,12 @@ class CheckoutController < ApplicationController
 		draft_order.save!
 	end
 
+	def show_draft_order
+		@draft_order = current_user.draft_order
+	end
+
+	private
+
 	def create_new_order_item(draft_order, book, quantity)
 		new_order_item = draft_order.order_items.new(book: book, quantity: quantity, item_price: item_price(book.price, quantity))
 		if new_order_item.save
@@ -27,7 +33,11 @@ class CheckoutController < ApplicationController
 
 	def update_order_item(order_item, book, quantity)
 		new_quantity = order_item.quantity + quantity
-		order_item.update(quantity: new_quantity, item_price: item_price(book.price, new_quantity))
+		if order_item.update(quantity: new_quantity, item_price: item_price(book.price, new_quantity))
+			redirect_to book_path(book), notice: 'Book added.'
+		else
+			redirect_to book_path(book), alert: 'Can not add the book'
+		end
 	end
 
   def item_price(book_price, quantity)

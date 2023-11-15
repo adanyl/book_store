@@ -13,7 +13,8 @@
   <body>
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
-    <%= link_to "Go to homepage", root_path, style: 'margin-top: 20px' %>
+    <%= link_to "Go to homepage", root_path, style: 'margin-top: 20px' %><br/>
+    <%= link_to 'View Draft Order', show_draft_order_path, class: 'btn btn-primary' %>
     <%= yield %>
   </body>
 </html>
