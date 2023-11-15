@@ -1,0 +1,26 @@
+<% if @orders.present? %>
+  <h1>Orders</h1>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Status</th>
+        <th>Total Price</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @orders.each do |order| %>
+        <tr>
+          <td><%= order.status %></td>
+          <td><%= number_to_currency(order.total_price) %></td>
+          <td>
+            <%= link_to 'Show order', order_path(order) %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <p>No orders found.</p>
+<% end %>
