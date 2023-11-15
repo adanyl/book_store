@@ -5,6 +5,12 @@
 <p><strong>Published Year:</strong> <%= @published_year %></p>
 <p><strong>Genre:</strong> <%= @genre %></p>
 
+<%= form_with(url: create_order_item_path, method: :post) do |form| %>
+  <%= form.hidden_field :book_id, value: @book.id %>
+  <%= form.number_field :quantity, value: 1, min: 1 %>
+  <%= form.submit 'Add to Cart' %>
+<% end %>
+
 <h2>Reviews:</h2>
 <%= link_to "New review", new_review_path(book_id: @book.id) %>
 <% if @reviews.any? %>
