@@ -1,7 +1,8 @@
 <% if @order.present? && @order.order_items.present? %>
-  <h1>Draft Order Details</h1>
+  <h1>Order Details</h1>
 
   <p><strong>Total Price:</strong> <%= number_to_currency(@order.total_price) %></p>
+  <p><strong>Status:</strong> <%= @order.status %></p>
 
   <table>
     <thead>
