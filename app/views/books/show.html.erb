@@ -4,3 +4,19 @@
 <p><strong>Price:</strong> <%= number_to_currency(@book.price) %></p>
 <p><strong>Published Year:</strong> <%= @published_year %></p>
 <p><strong>Genre:</strong> <%= @genre %></p>
+
+<h2>Reviews:</h2>
+<% if @reviews.any? %>
+  <div>
+    <% @reviews.each do |review| %>
+      <div style="border: 1px solid #ddd;">
+        <h3>User: <%= review.user.name %></h3>
+        <h3>Rating: <%= review.rating %>/10</h3>
+        <p><%= review.comment[0,30] %></p>
+        <p><%= link_to "Watch full review", review_path(review.id), style: 'margin-top: 20px' %></p>
+      </div>
+    <% end %>
+  </div>
+<% else %>
+  <p>No reviews yet</p>
+<% end %>

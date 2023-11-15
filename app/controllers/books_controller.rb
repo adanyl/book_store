@@ -7,6 +7,7 @@ class BooksController < ApplicationController
 		@book = Book.find(params[:id])
 		@published_year = @book.published_year || 'N/A'
     @genre = @book.genre || 'N/A'
+		@reviews = @book.reviews
 	end
 end
   

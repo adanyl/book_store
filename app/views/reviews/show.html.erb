@@ -1,0 +1,6 @@
+<h3>User: <%= @review.user.name %></h3>
+<h3>Rating: <%= @review.rating %>/10</h3>
+<p><%= @review.comment %></p>
+<% if current_user.id.eql?(@review.user_id) %>
+  <%= button_to 'Delete Review', review_path(@review.id), method: :delete, class: 'btn btn-primary btn-lg', style: 'margin-top: 20px'%>
+<% end %>

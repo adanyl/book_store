@@ -12,7 +12,7 @@
 <h1>List of Books</h1>
 
 <% if @books.any? %>
-  <div class="book-tiles">
+  <div>
     <% @books.each do |book| %>
       <div class="book-tile">
         <h3><%= link_to book.title, book_path(book.id) %></h3>
