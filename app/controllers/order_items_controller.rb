@@ -4,6 +4,7 @@ class OrderItemsController < ApplicationController
 	def destroy
 		order_item = OrderItem.find(params[:id])
 		order_item.destroy
+		order_item.order.save!
 
 		redirect_to show_draft_order_path, notice: 'Order Item was successfully deleted.'
 	end
