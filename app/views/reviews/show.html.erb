@@ -4,3 +4,5 @@
 <% if current_user.id.eql?(@review.user_id) %>
   <%= button_to 'Delete Review', review_path(@review.id), method: :delete, class: 'btn btn-primary btn-lg', style: 'margin-top: 20px'%>
 <% end %>
+
+<%= link_to 'Back to Book', book_path(@book) %>

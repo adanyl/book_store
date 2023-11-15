@@ -6,6 +6,7 @@
 <p><strong>Genre:</strong> <%= @genre %></p>
 
 <h2>Reviews:</h2>
+<%= link_to "New review", new_review_path(book_id: @book.id) %>
 <% if @reviews.any? %>
   <div>
     <% @reviews.each do |review| %>
