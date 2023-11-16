@@ -14,4 +14,8 @@
 class Book < ApplicationRecord
   has_many :reviews, dependent: :destroy
   has_many :order_items
+
+  validates :title, :price, :author, presence: true
+
+  validates :price, presence: true, numericality: { greater_than: 0 }
 end

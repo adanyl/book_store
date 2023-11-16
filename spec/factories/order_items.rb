@@ -20,10 +20,11 @@
 #  fk_rails_...  (book_id => books.id) ON DELETE => cascade
 #  fk_rails_...  (order_id => orders.id) ON DELETE => cascade
 #
-class OrderItem < ApplicationRecord
-  belongs_to :order
-  belongs_to :book
-
-  validates :quantity, presence: true, numericality: { only_integer: true, greater_than: 0 }
-  validates :item_price, presence: true
+FactoryBot.define do
+  factory :order_item do
+    quantity { 2 }
+    item_price { 19.99 }
+    association :order
+    association :book
+  end
 end
