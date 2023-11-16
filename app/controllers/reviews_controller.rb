@@ -17,7 +17,7 @@ class ReviewsController < ApplicationController
     if review.save
       redirect_to review_path(review), notice: 'Review was successfully created.'
     else
-      redirect_to new_review_path(book_id: params[:book_id]), alert: 'Review can not be created'
+      redirect_to new_review_path(book_id: params[:review][:book_id]), alert: 'Review can not be created'
     end
   end
 

@@ -10,7 +10,7 @@ class OrdersController < ApplicationController
   end
 
   def update
-    order = current_user.orders.find_by(id: params[:id])
+    order = current_user.orders.draft.find_by(id: params[:id])
 
     if order.update(status: :pending)
       redirect_to orders_path, notice: 'Order was successfully confirmed.'
