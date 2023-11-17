@@ -22,7 +22,7 @@ class Book < ApplicationRecord
   scope :bought_by_user, lambda { |user_id|
     joins(order_items: { order: :user })
       .where(users: { id: user_id })
-      .where(orders: { status: :pending })
+      .where(orders: { status: %i[pending completed] })
       .distinct
   }
 end
