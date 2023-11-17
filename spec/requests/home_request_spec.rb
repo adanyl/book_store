@@ -17,6 +17,10 @@ RSpec.describe 'Home', type: :request do
         expect(assigns(:books)).to be_present
       end
 
+      it 'returns the correct data in the response' do
+        expect(response.body).to include(book.title)
+      end
+
       it 'renders the index template' do
         expect(response).to render_template('index')
       end
