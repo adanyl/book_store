@@ -18,4 +18,11 @@ class Book < ApplicationRecord
   validates :title, :price, :author, presence: true
 
   validates :price, presence: true, numericality: { greater_than: 0 }
+
+  scope :bought_by_user, lambda { |user_id|
+    joins(order_items: { order: :user })
+      .where(users: { id: user_id })
+      .where(orders: { status: :pending })
+      .distinct
+  }
 end
